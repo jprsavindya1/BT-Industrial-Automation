@@ -22,43 +22,58 @@
 <body class="bg-slate-950 text-slate-100 font-sans min-h-screen flex flex-col antialiased">
 
     <!-- Header Navigation -->
-    <header class="bg-brand-blue-dark/90 backdrop-blur-md border-b border-brand-blue-light/50 sticky top-0 z-50 transition-all duration-300">
-        <div class="container mx-auto px-4 py-3 flex flex-col md:flex-row items-center justify-between gap-4">
+    <header class="bg-brand-blue-dark/95 backdrop-blur-md border-b border-brand-blue-light/50 sticky top-0 z-50 transition-all duration-300">
+        <div class="container mx-auto px-4 py-3 flex flex-col md:flex-row md:items-center justify-between gap-3 md:gap-4">
             
-            <!-- Logo Section -->
-            <a href="{{ route('home') }}" class="flex items-center gap-3 group">
-                <img src="{{ asset('logo-monogram.png') }}" alt="BT Logo" class="w-10 h-10 object-contain">
-                <div class="flex flex-col">
-                    <h1 class="font-serif font-bold text-lg tracking-wide text-white leading-tight">BT INDUSTRIAL</h1>
-                    <p class="text-[10px] font-sans tracking-[0.2em] text-slate-400 font-semibold uppercase leading-none">Automation Sri Lanka</p>
-                </div>
-            </a>
+            <!-- Top Row: Logo & Mobile Burger Toggle -->
+            <div class="flex items-center justify-between w-full md:w-auto">
+                <a href="{{ route('home') }}" class="flex items-center gap-3 group">
+                    <img src="{{ asset('logo-monogram.png') }}" alt="BT Logo" class="w-10 h-10 object-contain">
+                    <div class="flex flex-col">
+                        <h1 class="font-serif font-bold text-lg tracking-wide text-white leading-tight">BT INDUSTRIAL</h1>
+                        <p class="text-[10px] font-sans tracking-[0.2em] text-slate-400 font-semibold uppercase leading-none">Automation Sri Lanka</p>
+                    </div>
+                </a>
 
-            <!-- Search Bar -->
-            <div class="w-full md:w-80 relative">
-                <form action="{{ route('products.index') }}" method="GET" class="relative">
-                    <input id="header-search-input" type="text" name="search" placeholder="Search components (PLC, Solar, Sensor)..." 
-                           value="{{ request('search') }}" autocomplete="off"
-                           class="w-full bg-brand-blue-light/30 border border-brand-blue-light/80 rounded-full py-2 pl-4 pr-10 text-sm text-slate-100 placeholder-slate-400 focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold transition-all duration-300">
-                    <button type="submit" class="absolute right-3 top-2.5 text-slate-400 hover:text-brand-gold transition-colors duration-300">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                        </svg>
-                    </button>
-                </form>
-                
-                <!-- Autocomplete Dropdown Container -->
-                <div id="search-suggestions" class="hidden absolute top-full left-0 right-0 mt-2 bg-[#0A1224]/95 backdrop-blur-md border border-brand-blue-light/50 rounded-2xl shadow-2xl z-50 overflow-hidden divide-y divide-brand-blue-light/20 max-h-96 overflow-y-auto">
-                    <!-- Dynamic suggestions go here -->
-                </div>
+                <!-- Mobile Hamburger Toggle Button -->
+                <button type="button" id="mobile-menu-toggle" class="md:hidden p-2 rounded-xl bg-brand-blue-light/20 text-slate-300 hover:text-white border border-brand-blue-light/40 focus:outline-none transition-all duration-300" aria-label="Toggle Navigation Menu">
+                    <svg id="hamburger-open-icon" class="w-6 h-6 block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                    <svg id="hamburger-close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
             </div>
 
-            <!-- Nav Menu Links -->
-            <nav class="flex items-center gap-6">
-                <a href="{{ route('home') }}" class="text-sm font-medium tracking-wide gold-underline {{ request()->routeIs('home') ? 'text-brand-gold font-semibold' : 'text-slate-300' }}">Home</a>
-                <a href="{{ route('products.index') }}" class="text-sm font-medium tracking-wide gold-underline {{ request()->routeIs('products.index') ? 'text-brand-gold font-semibold' : 'text-slate-300' }}">Products Catalog</a>
-                <a href="{{ route('contact') }}" class="text-sm font-medium tracking-wide gold-underline {{ request()->routeIs('contact') ? 'text-brand-gold font-semibold' : 'text-slate-300' }}">Contact Us</a>
-            </nav>
+            <!-- Collapsible Menu Container -->
+            <div id="mobile-menu-container" class="hidden md:flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 w-full md:w-auto transition-all duration-300">
+                <!-- Search Bar inside menu -->
+                <div class="w-full md:w-80 relative mt-2 md:mt-0">
+                    <form action="{{ route('products.index') }}" method="GET" class="relative">
+                        <input id="header-search-input" type="text" name="search" placeholder="Search components (PLC, Solar, Sensor)..." 
+                               value="{{ request('search') }}" autocomplete="off"
+                               class="w-full bg-brand-blue-light/30 border border-brand-blue-light/80 rounded-full py-2 pl-4 pr-10 text-sm text-slate-100 placeholder-slate-400 focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold transition-all duration-300">
+                        <button type="submit" class="absolute right-3 top-2.5 text-slate-400 hover:text-brand-gold transition-colors duration-300">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                        </button>
+                    </form>
+                    
+                    <!-- Autocomplete Dropdown Container -->
+                    <div id="search-suggestions" class="hidden absolute top-full left-0 right-0 mt-2 bg-[#0A1224]/95 backdrop-blur-md border border-brand-blue-light/50 rounded-2xl shadow-2xl z-50 overflow-hidden divide-y divide-brand-blue-light/20 max-h-96 overflow-y-auto">
+                        <!-- Dynamic suggestions go here -->
+                    </div>
+                </div>
+
+                <!-- Nav Menu Links -->
+                <nav class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-6 mt-3 md:mt-0 border-t border-brand-blue-light/20 md:border-none pt-3 md:pt-0">
+                    <a href="{{ route('home') }}" class="w-full md:w-auto py-2 md:py-0 text-sm font-medium tracking-wide gold-underline {{ request()->routeIs('home') ? 'text-brand-gold font-semibold' : 'text-slate-300' }}">Home</a>
+                    <a href="{{ route('products.index') }}" class="w-full md:w-auto py-2 md:py-0 text-sm font-medium tracking-wide gold-underline {{ request()->routeIs('products.index') ? 'text-brand-gold font-semibold' : 'text-slate-300' }}">Products Catalog</a>
+                    <a href="{{ route('contact') }}" class="w-full md:w-auto py-2 md:py-0 text-sm font-medium tracking-wide gold-underline {{ request()->routeIs('contact') ? 'text-brand-gold font-semibold' : 'text-slate-300' }}">Contact Us</a>
+                </nav>
+            </div>
 
         </div>
     </header>
@@ -259,7 +274,7 @@
         });
     </script>
 
-    <!-- Theme Switcher Script -->
+    <!-- Theme Switcher Script & Mobile Menu Script -->
     <script>
         function toggleTheme() {
             const currentTheme = localStorage.getItem('bt_theme') || 'dark';
@@ -272,6 +287,35 @@
             }
             localStorage.setItem('bt_theme', newTheme);
         }
+
+        // Mobile Responsive Toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleButton = document.getElementById('mobile-menu-toggle');
+            const menuContainer = document.getElementById('mobile-menu-container');
+            const openIcon = document.getElementById('hamburger-open-icon');
+            const closeIcon = document.getElementById('hamburger-close-icon');
+
+            if (toggleButton && menuContainer) {
+                toggleButton.addEventListener('click', function() {
+                    const isHidden = menuContainer.classList.contains('hidden');
+                    if (isHidden) {
+                        menuContainer.classList.remove('hidden');
+                        menuContainer.classList.add('flex');
+                        openIcon.classList.add('hidden');
+                        openIcon.classList.remove('block');
+                        closeIcon.classList.remove('hidden');
+                        closeIcon.classList.add('block');
+                    } else {
+                        menuContainer.classList.add('hidden');
+                        menuContainer.classList.remove('flex');
+                        openIcon.classList.remove('hidden');
+                        openIcon.classList.add('block');
+                        closeIcon.classList.add('hidden');
+                        closeIcon.classList.remove('block');
+                    }
+                });
+            }
+        });
     </script>
 
 </body>
