@@ -23,10 +23,10 @@
 
     <!-- Header Navigation -->
     <header class="bg-brand-blue-dark/95 backdrop-blur-md border-b border-brand-blue-light/50 sticky top-0 z-50 transition-all duration-300">
-        <div class="container mx-auto px-4 py-3 flex flex-col md:flex-row md:items-center justify-between gap-3 md:gap-4">
+        <div class="container mx-auto px-4 py-3 flex flex-col md:grid md:grid-cols-[auto_1fr_auto] lg:grid-cols-[1fr_2fr_1fr] md:items-center justify-between gap-3 md:gap-4">
             
             <!-- Top Row: Logo & Mobile Burger Toggle -->
-            <div class="flex items-center justify-between w-full md:w-auto">
+            <div class="flex items-center justify-between w-full md:w-auto shrink-0 justify-self-start">
                 <a href="{{ route('home') }}" class="flex items-center gap-3 group">
                     <img src="{{ asset('logo-monogram.png') }}" alt="BT Logo" class="w-10 h-10 object-contain">
                     <div class="flex flex-col">
@@ -47,15 +47,15 @@
             </div>
 
             <!-- Collapsible Menu Container -->
-            <div id="mobile-menu-container" class="hidden md:flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 w-full md:w-auto transition-all duration-300">
+            <div id="mobile-menu-container" class="hidden md:contents flex-col gap-4 w-full">
                 <!-- Search Bar inside menu -->
-                <div class="w-full md:w-80 relative mt-2 md:mt-0">
+                <div class="w-full md:max-w-xl justify-self-center relative mt-2 md:mt-0">
                     <form action="{{ route('products.index') }}" method="GET" class="relative">
                         <input id="header-search-input" type="text" name="search" placeholder="Search components (PLC, Solar, Sensor)..." 
                                value="{{ request('search') }}" autocomplete="off"
-                               class="w-full bg-brand-blue-light/30 border border-brand-blue-light/80 rounded-full py-2 pl-4 pr-10 text-sm text-slate-100 placeholder-slate-400 focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold transition-all duration-300">
-                        <button type="submit" class="absolute right-3 top-2.5 text-slate-400 hover:text-brand-gold transition-colors duration-300">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                               class="w-full bg-[#0A1224]/60 backdrop-blur-sm border border-brand-blue-light/60 rounded-full py-2.5 pl-5 pr-12 text-sm text-slate-100 placeholder-slate-400 focus:outline-none focus:bg-[#0A1224]/90 focus:border-brand-gold focus:ring-1 focus:ring-brand-gold transition-all duration-300">
+                        <button type="submit" class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-brand-gold transition-colors duration-300">
+                            <svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                             </svg>
                         </button>
@@ -68,10 +68,10 @@
                 </div>
 
                 <!-- Nav Menu Links -->
-                <nav class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-6 mt-3 md:mt-0 border-t border-brand-blue-light/20 md:border-none pt-3 md:pt-0">
-                    <a href="{{ route('home') }}" class="w-full md:w-auto py-2 md:py-0 text-sm font-medium tracking-wide gold-underline {{ request()->routeIs('home') ? 'text-brand-gold font-semibold' : 'text-slate-300' }}">Home</a>
-                    <a href="{{ route('products.index') }}" class="w-full md:w-auto py-2 md:py-0 text-sm font-medium tracking-wide gold-underline {{ request()->routeIs('products.index') ? 'text-brand-gold font-semibold' : 'text-slate-300' }}">Products Catalog</a>
-                    <a href="{{ route('contact') }}" class="w-full md:w-auto py-2 md:py-0 text-sm font-medium tracking-wide gold-underline {{ request()->routeIs('contact') ? 'text-brand-gold font-semibold' : 'text-slate-300' }}">Contact Us</a>
+                <nav class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-6 mt-3 md:mt-0 border-t border-brand-blue-light/20 md:border-none pt-3 md:pt-0 justify-self-end">
+                    <a href="{{ route('home') }}" class="w-full md:w-auto py-2 md:py-0 text-sm font-medium tracking-wide gold-underline {{ request()->routeIs('home') ? 'text-brand-gold font-semibold' : 'text-slate-200 hover:text-white' }}">Home</a>
+                    <a href="{{ route('products.index') }}" class="w-full md:w-auto py-2 md:py-0 text-sm font-medium tracking-wide gold-underline {{ request()->routeIs('products.index') ? 'text-brand-gold font-semibold' : 'text-slate-200 hover:text-white' }}">Products Catalog</a>
+                    <a href="{{ route('contact') }}" class="w-full md:w-auto py-2 md:py-0 text-sm font-medium tracking-wide gold-underline {{ request()->routeIs('contact') ? 'text-brand-gold font-semibold' : 'text-slate-200 hover:text-white' }}">Contact Us</a>
                 </nav>
             </div>
 
