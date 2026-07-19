@@ -1,0 +1,170 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+:root {
+    /* Dark Mode (Default) Colors */
+    --brand-blue: #0E1A35;
+    --brand-blue-dark: #0A1224;
+    --brand-blue-light: #1E2D4F;
+    --brand-gold: #FFB200;
+    --brand-gold-dark: #D49400;
+    
+    --bg-main: #020617; /* slate-950 */
+    --bg-sec: #0f172a; /* slate-900 */
+    --bg-slate-900-val: #0f172a;
+    --text-main: #f8fafc; /* slate-100 */
+    --text-muted: #94a3b8; /* slate-400 */
+    --text-title: #ffffff; /* white */
+    
+    --glass-bg: rgba(10, 18, 36, 0.65);
+    --glass-border: rgba(30, 45, 79, 0.6);
+    --glass-card-bg: rgba(14, 26, 53, 0.35);
+    --glass-card-border: rgba(30, 45, 79, 0.4);
+    --glass-card-bg-hover: rgba(14, 26, 53, 0.55);
+    
+    --grid-dot: rgba(255, 255, 255, 0.15);
+    
+    --hero-overlay: linear-gradient(to bottom, rgba(14, 26, 53, 0.88) 0%, rgba(2, 6, 23, 0.82) 50%, rgba(2, 6, 23, 0.98) 100%);
+}
+
+[data-theme="light"] {
+    /* Light Mode Colors */
+    --brand-blue: #0F172A;
+    --brand-blue-dark: #F8FAFC;
+    --brand-blue-light: #E2E8F0;
+    --brand-gold: #1D4ED8; /* Premium Royal Blue */
+    --brand-gold-dark: #1E3A8A; /* Darker Blue */
+    
+    --bg-main: #F8FAFC; /* slate-50 */
+    --bg-sec: #FFFFFF; /* white */
+    --bg-slate-900-val: #F1F5F9; /* slate-100 to frame images beautifully in light theme */
+    --text-main: #334155; /* slate-700 */
+    --text-muted: #475569; /* slate-600 for clear dark gray contrast */
+    --text-title: #0F172A; /* slate-900 */
+    
+    --glass-bg: rgba(255, 255, 255, 0.8);
+    --glass-border: rgba(15, 23, 42, 0.08);
+    --glass-card-bg: rgba(255, 255, 255, 0.6);
+    --glass-card-border: rgba(15, 23, 42, 0.08);
+    --glass-card-bg-hover: rgba(255, 255, 255, 0.95);
+    
+    --grid-dot: rgba(15, 23, 42, 0.08);
+    
+    --hero-overlay: linear-gradient(to bottom, rgba(248, 250, 252, 0.84) 0%, rgba(255, 255, 255, 0.72) 50%, rgba(248, 250, 252, 0.88) 100%);
+}
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+    --font-serif: 'Playfair Display', Georgia, serif;
+    --color-brand-blue: var(--brand-blue);
+    --color-brand-blue-dark: var(--brand-blue-dark);
+    --color-brand-blue-light: var(--brand-blue-light);
+    --color-brand-gold: var(--brand-gold);
+    --color-brand-gold-dark: var(--brand-gold-dark);
+
+    /* Map default tailwind slate colors to our dynamic variables */
+    --color-slate-950: var(--bg-main);
+    --color-slate-900: var(--bg-slate-900-val);
+    --color-slate-800: var(--bg-slate-900-val);
+    --color-white: var(--text-title);
+    --color-slate-100: var(--text-main);
+    --color-slate-200: var(--text-muted);
+    --color-slate-300: var(--text-muted);
+    --color-slate-400: var(--text-muted);
+    --color-slate-500: var(--text-muted);
+}
+
+/* Premium Styling & Animation Tokens */
+
+@utility bg-glass {
+    background-color: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+}
+
+@utility bg-glass-card {
+    background-color: var(--glass-card-bg);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--glass-card-border);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@utility hover-glass-card {
+    &:hover {
+        transform: translateY(-4px);
+        border-color: var(--brand-gold);
+        box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.5), 0 0 15px var(--brand-gold);
+        background-color: var(--glass-card-bg-hover);
+    }
+}
+
+@utility gold-underline {
+    position: relative;
+    &::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        transform: scaleX(0);
+        height: 2px;
+        bottom: -4px;
+        left: 0;
+        background-color: var(--brand-gold);
+        transform-origin: bottom right;
+        transition: transform 0.3s ease-out;
+    }
+    &:hover::after {
+        transform: scaleX(1);
+        transform-origin: bottom left;
+    }
+}
+
+@utility animate-shimmer {
+    position: relative;
+    overflow: hidden;
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        transform: translateX(-100%);
+        background-image: linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0.05) 20%,
+            rgba(255, 255, 255, 0.1) 60%,
+            rgba(255, 255, 255, 0) 100%
+        );
+        animation: shimmer-animation 3s infinite;
+    }
+}
+
+@keyframes shimmer-animation {
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Monogram Logo contrast adjustment for Light Mode */
+[data-theme="light"] img[src*="logo-monogram"] {
+    filter: invert(1);
+}
+
+@utility bg-dot-grid {
+    background-image: radial-gradient(var(--grid-dot) 1px, transparent 1px);
+    background-size: 16px 16px;
+}
+
+@utility bg-dot-grid-lg {
+    background-image: radial-gradient(var(--grid-dot) 1.5px, transparent 1.5px);
+    background-size: 24px 24px;
+}
+
+@utility bg-hero-overlay {
+    background-image: var(--hero-overlay);
+}
