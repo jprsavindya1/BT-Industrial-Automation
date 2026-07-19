@@ -79,9 +79,9 @@
                 
                 <!-- Google Maps Frame -->
                 <div class="border border-brand-blue-light/20 rounded-2xl overflow-hidden shadow-xl aspect-video relative">
-                    <!-- Responsive embedded iframe pointing to 67, 23rd lane, Dikhenapura, Horana -->
+                    <!-- Responsive embedded iframe pointing to the customized Google Map location -->
                     <iframe 
-                        src="https://maps.google.com/maps?q=67,%2023rd%20lane,%20Dikhenapura,%20Horana,%20Sri%20Lanka&t=&z=16&ie=UTF8&iwloc=&output=embed" 
+                        src="https://maps.google.com/maps?q=6.7237315,80.0826187&t=&z=16&ie=UTF8&iwloc=&output=embed" 
                         class="absolute inset-0 w-full h-full border-0" 
                         allowfullscreen="" 
                         loading="lazy" 
