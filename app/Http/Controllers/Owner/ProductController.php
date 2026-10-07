@@ -14,7 +14,7 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $categories = Category::all();
-        $query = Product::query()->with('category');
+        $query = Product::query()->with(['category', 'galleryImages']);
 
         if ($request->filled('search')) {
             $search = $request->input('search');
@@ -46,9 +46,9 @@ class ProductController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'description' => ['nullable', 'string'],
             'price' => ['required', 'numeric', 'min:0'],
-            'image' => ['nullable', 'image', 'max:2048'],
+            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp', 'max:2048', 'dimensions:max_width=2000,max_height=2000'],
             'gallery' => ['nullable', 'array'],
-            'gallery.*' => ['image', 'max:2048'],
+            'gallery.*' => ['image', 'mimes:jpeg,png,jpg,webp', 'max:2048', 'dimensions:max_width=2000,max_height=2000'],
             'is_featured' => ['nullable', 'boolean'],
         ]);
 
@@ -116,9 +116,9 @@ class ProductController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'description' => ['nullable', 'string'],
             'price' => ['required', 'numeric', 'min:0'],
-            'image' => ['nullable', 'image', 'max:2048'],
+            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp', 'max:2048', 'dimensions:max_width=2000,max_height=2000'],
             'gallery' => ['nullable', 'array'],
-            'gallery.*' => ['image', 'max:2048'],
+            'gallery.*' => ['image', 'mimes:jpeg,png,jpg,webp', 'max:2048', 'dimensions:max_width=2000,max_height=2000'],
             'is_featured' => ['nullable', 'boolean'],
         ]);
 

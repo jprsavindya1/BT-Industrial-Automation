@@ -12,9 +12,11 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script>
         (function() {
-            const savedTheme = localStorage.getItem('bt_theme') || 'dark';
-            if (savedTheme === 'light') {
+            const savedTheme = localStorage.getItem('bt_theme') || 'light';
+            if (savedTheme !== 'dark') {
                 document.documentElement.setAttribute('data-theme', 'light');
+            } else {
+                document.documentElement.removeAttribute('data-theme');
             }
         })();
     </script>
@@ -23,10 +25,10 @@
 
     <!-- Header Navigation -->
     <header class="bg-brand-blue-dark/95 backdrop-blur-md border-b border-brand-blue-light/50 sticky top-0 z-50 transition-all duration-300">
-        <div class="container mx-auto px-4 py-3 flex flex-col md:grid md:grid-cols-[auto_1fr_auto] lg:grid-cols-[1fr_2fr_1fr] md:items-center justify-between gap-3 md:gap-4">
+        <div class="container mx-auto px-4 py-3.5 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-6">
             
             <!-- Top Row: Logo & Mobile Burger Toggle -->
-            <div class="flex items-center justify-between w-full md:w-auto shrink-0 justify-self-start">
+            <div class="flex items-center justify-between w-full md:w-auto shrink-0">
                 <a href="{{ route('home') }}" class="flex items-center gap-3 group">
                     <img src="{{ asset('logo-monogram.png') }}" alt="BT Logo" class="w-10 h-10 object-contain">
                     <div class="flex flex-col">
@@ -47,13 +49,13 @@
             </div>
 
             <!-- Collapsible Menu Container -->
-            <div id="mobile-menu-container" class="hidden md:contents flex-col gap-4 w-full">
+            <div id="mobile-menu-container" class="hidden md:flex flex-col md:flex-row items-center justify-between w-full gap-4 md:gap-6">
                 <!-- Search Bar inside menu -->
-                <div class="w-full md:max-w-xl justify-self-center relative mt-2 md:mt-0">
+                <div class="w-full md:max-w-md lg:max-w-lg relative mt-2 md:mt-0 mx-auto">
                     <form action="{{ route('products.index') }}" method="GET" class="relative">
                         <input id="header-search-input" type="text" name="search" placeholder="Search components (PLC, Solar, Sensor)..." 
                                value="{{ request('search') }}" autocomplete="off"
-                               class="w-full bg-[#0A1224]/60 backdrop-blur-sm border border-brand-blue-light/60 rounded-full py-2.5 pl-5 pr-12 text-sm text-slate-100 placeholder-slate-400 focus:outline-none focus:bg-[#0A1224]/90 focus:border-brand-gold focus:ring-1 focus:ring-brand-gold transition-all duration-300">
+                               class="w-full bg-[#0A1224]/60 [html[data-theme='light']_&]:bg-white backdrop-blur-sm border border-brand-blue-light/60 rounded-full py-2 pl-5 pr-12 text-sm text-slate-100 [html[data-theme='light']_&]:text-slate-900 placeholder-slate-400 [html[data-theme='light']_&]:placeholder-slate-500 focus:outline-none focus:bg-[#0A1224]/90 [html[data-theme='light']_&]:focus:bg-white focus:border-brand-gold focus:ring-1 focus:ring-brand-gold transition-all duration-300">
                         <button type="submit" class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-brand-gold transition-colors duration-300">
                             <svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
@@ -62,16 +64,17 @@
                     </form>
                     
                     <!-- Autocomplete Dropdown Container -->
-                    <div id="search-suggestions" class="hidden absolute top-full left-0 right-0 mt-2 bg-[#0A1224]/95 backdrop-blur-md border border-brand-blue-light/50 rounded-2xl shadow-2xl z-50 overflow-hidden divide-y divide-brand-blue-light/20 max-h-96 overflow-y-auto">
+                    <div id="search-suggestions" class="hidden absolute top-full left-0 right-0 mt-2 bg-[#0A1224]/95 [html[data-theme='light']_&]:bg-white backdrop-blur-md border border-brand-blue-light/50 [html[data-theme='light']_&]:border-slate-200 rounded-2xl shadow-2xl z-50 overflow-hidden divide-y divide-brand-blue-light/20 [html[data-theme='light']_&]:divide-slate-100 max-h-96 overflow-y-auto">
                         <!-- Dynamic suggestions go here -->
                     </div>
                 </div>
 
-                <!-- Nav Menu Links -->
-                <nav class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-6 mt-3 md:mt-0 border-t border-brand-blue-light/20 md:border-none pt-3 md:pt-0 justify-self-end">
-                    <a href="{{ route('home') }}" class="w-full md:w-auto py-2 md:py-0 text-sm font-medium tracking-wide gold-underline {{ request()->routeIs('home') ? 'text-brand-gold font-semibold' : 'text-slate-200 hover:text-white' }}">Home</a>
-                    <a href="{{ route('products.index') }}" class="w-full md:w-auto py-2 md:py-0 text-sm font-medium tracking-wide gold-underline {{ request()->routeIs('products.index') ? 'text-brand-gold font-semibold' : 'text-slate-200 hover:text-white' }}">Products Catalog</a>
-                    <a href="{{ route('contact') }}" class="w-full md:w-auto py-2 md:py-0 text-sm font-medium tracking-wide gold-underline {{ request()->routeIs('contact') ? 'text-brand-gold font-semibold' : 'text-slate-200 hover:text-white' }}">Contact Us</a>
+                <!-- Nav Menu Links (Single Line, Never Wraps) -->
+                <nav class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-5 lg:gap-7 shrink-0 whitespace-nowrap mt-3 md:mt-0 border-t border-brand-blue-light/20 md:border-none pt-3 md:pt-0">
+                    <a href="{{ route('home') }}" class="w-full md:w-auto py-1 md:py-0 text-sm font-medium tracking-wide gold-underline whitespace-nowrap {{ request()->routeIs('home') ? 'text-brand-gold font-semibold' : 'text-slate-200 hover:text-white' }}">Home</a>
+                    <a href="{{ route('products.index') }}" class="w-full md:w-auto py-1 md:py-0 text-sm font-medium tracking-wide gold-underline whitespace-nowrap {{ request()->routeIs('products.index') ? 'text-brand-gold font-semibold' : 'text-slate-200 hover:text-white' }}">Products Catalog</a>
+                    <a href="{{ route('downloads') }}" class="w-full md:w-auto py-1 md:py-0 text-sm font-medium tracking-wide gold-underline whitespace-nowrap {{ request()->routeIs('downloads') ? 'text-brand-gold font-semibold' : 'text-slate-200 hover:text-white' }}">Software Downloads</a>
+                    <a href="{{ route('contact') }}" class="w-full md:w-auto py-1 md:py-0 text-sm font-medium tracking-wide gold-underline whitespace-nowrap {{ request()->routeIs('contact') ? 'text-brand-gold font-semibold' : 'text-slate-200 hover:text-white' }}">Contact Us</a>
                 </nav>
             </div>
 
@@ -84,35 +87,28 @@
     </main>
 
     <!-- Footer Section -->
-    <footer class="bg-brand-blue-dark border-t border-brand-blue-light/30 text-slate-400 pt-12 pb-6 mt-12">
-        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+    <footer class="bg-brand-blue-dark border-t border-brand-blue-light/30 text-slate-400 pt-12 pb-6 mt-16 transition-colors duration-300">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
             
             <!-- Column 1: Brand Info -->
             <div class="flex flex-col gap-4">
                 <a href="{{ route('home') }}" class="flex items-center gap-3">
                     <img src="{{ asset('logo-monogram.png') }}" alt="BT Logo" class="w-10 h-10 object-contain">
-                    <span class="font-serif font-bold text-lg text-white">BT Industrial Automation</span>
+                    <span class="font-serif font-bold text-lg text-white footer-brand-title">BT Industrial Automation</span>
                 </a>
-                <p class="text-sm leading-relaxed text-slate-400 mt-2">
+                <p class="text-sm leading-relaxed text-slate-400 mt-1">
                     Your premier engineering partner in Sri Lanka for advanced PLCs, industrial sensors, solar power configurations, inverters, and custom robotic automation solutions.
                 </p>
-                <!-- Social Links -->
-                <div class="flex items-center gap-4 mt-3">
-                    <a href="https://www.facebook.com/share/1PATJveuuY/" target="_blank" class="w-8 h-8 rounded-full bg-brand-blue-light/50 flex items-center justify-center text-slate-300 hover:bg-brand-gold hover:text-slate-950 transition-all duration-300" aria-label="Facebook">
-                        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.75z"/></svg>
-                    </a>
-                </div>
             </div>
 
             <!-- Column 2: Quick Links -->
-            <div class="flex flex-col gap-4 md:pl-12">
+            <div class="flex flex-col gap-4 md:pl-8">
                 <h3 class="text-white font-serif font-semibold text-lg">Quick Navigation</h3>
-                <ul class="space-y-2 text-sm">
-                    <li><a href="{{ route('home') }}" class="hover:text-brand-gold transition-colors duration-300 flex items-center gap-2"><span>&rsaquo;</span> Home</a></li>
+                <ul class="space-y-2.5 text-sm">
+                    <li><a href="{{ route('home') }}" class="hover:text-brand-gold transition-colors duration-300 flex items-center gap-2"><span>&rsaquo;</span> Home Page</a></li>
                     <li><a href="{{ route('products.index') }}" class="hover:text-brand-gold transition-colors duration-300 flex items-center gap-2"><span>&rsaquo;</span> Products Catalog</a></li>
-                    <li><a href="{{ route('contact') }}" class="hover:text-brand-gold transition-colors duration-300 flex items-center gap-2"><span>&rsaquo;</span> Contact Us</a></li>
-                    <li><a href="{{ route('products.index', ['category' => 'plcs-controllers']) }}" class="hover:text-brand-gold transition-colors duration-300 flex items-center gap-2"><span>&rsaquo;</span> PLCs & HMIs</a></li>
-                    <li><a href="{{ route('products.index', ['category' => 'solar-solutions']) }}" class="hover:text-brand-gold transition-colors duration-300 flex items-center gap-2"><span>&rsaquo;</span> Solar Systems</a></li>
+                    <li><a href="{{ route('downloads') }}" class="hover:text-brand-gold transition-colors duration-300 flex items-center gap-2"><span>&rsaquo;</span> Software & Tools Hub</a></li>
+                    <li><a href="{{ route('contact') }}" class="hover:text-brand-gold transition-colors duration-300 flex items-center gap-2"><span>&rsaquo;</span> Contact Engineering Team</a></li>
                 </ul>
             </div>
 
@@ -139,14 +135,22 @@
                         </svg>
                         <span>buddikatharindujp@gmail.com</span>
                     </li>
+                    <li class="flex items-center gap-3 pt-1">
+                        <a href="https://www.facebook.com/share/1PATJveuuY/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 group text-slate-300 hover:text-brand-gold transition-colors duration-300">
+                            <svg class="w-5 h-5 text-brand-gold shrink-0 fill-current group-hover:scale-110 transition-transform duration-300" viewBox="0 0 24 24">
+                                <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c4.56-.93 8-4.96 8-9.75z"/>
+                            </svg>
+                            <span class="font-medium group-hover:underline">BT Industrial Automation Sri Lanka</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
 
         </div>
 
-        <div class="container mx-auto px-4 border-t border-brand-blue-light/20 pt-6 mt-6 flex flex-col md:flex-row items-center justify-between text-xs">
+        <div class="container mx-auto px-4 border-t border-brand-blue-light/20 footer-divider pt-6 mt-6 flex flex-col md:flex-row items-center justify-between text-xs pl-20 md:pl-24">
             <p>&copy; {{ date('Y') }} BT Industrial Automation. All Rights Reserved.</p>
-            <p class="mt-2 md:mt-0 text-slate-500">Designed with passion for premium engineering. &bull; <a href="{{ route('login') }}" class="hover:text-brand-gold transition-colors duration-300">Owner Portal</a></p>
+            <p class="mt-2 md:mt-0 text-slate-500">Designed with passion for premium engineering.</p>
         </div>
     </footer>
 
@@ -277,8 +281,8 @@
     <!-- Theme Switcher Script & Mobile Menu Script -->
     <script>
         function toggleTheme() {
-            const currentTheme = localStorage.getItem('bt_theme') || 'dark';
-            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            const currentTheme = localStorage.getItem('bt_theme') || 'light';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
             
             if (newTheme === 'light') {
                 document.documentElement.setAttribute('data-theme', 'light');

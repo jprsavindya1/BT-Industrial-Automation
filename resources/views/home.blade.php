@@ -26,19 +26,19 @@
     <div class="absolute bottom-10 right-1/10 w-96 h-96 bg-brand-blue-light/10 rounded-full blur-3xl z-10 pointer-events-none"></div>
 
     <div class="container mx-auto px-4 relative z-20 text-center max-w-4xl">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-gold/10 border border-brand-gold/30 text-brand-gold text-xs font-semibold uppercase tracking-widest mb-6">
-            <svg class="w-3 h-3 animate-pulse" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <div class="hero-badge inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-gold/10 border border-brand-gold/30 text-brand-gold text-xs font-semibold uppercase tracking-widest mb-6 transition-all duration-300">
+            <svg class="w-3.5 h-3.5 animate-pulse" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"></path>
             </svg>
             Industrial Automation & Energy Solutions
         </div>
         
-        <h2 class="text-4xl md:text-6xl font-serif font-bold text-white leading-tight tracking-wide mb-6">
+        <h2 class="hero-title-main text-4xl md:text-6xl font-serif font-bold text-white leading-tight tracking-wide mb-6">
             Engineering the Future of <br>
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-200 to-brand-gold">Automation & Power</span>
+            <span class="hero-title-gradient">Automation & Power</span>
         </h2>
         
-        <p class="text-slate-400 text-lg md:text-xl leading-relaxed mb-8 max-w-2xl mx-auto">
+        <p class="hero-subtitle text-slate-400 text-lg md:text-xl leading-relaxed mb-8 max-w-2xl mx-auto">
             Providing high-quality PLCs, industrial sensors, solar panel configurations, and custom robotic solutions to empower Sri Lankan industries.
         </p>
 
@@ -57,42 +57,54 @@
 <section class="py-12 bg-slate-950 border-b border-brand-blue-light/20">
     <div class="container mx-auto px-4">
         <p class="text-center text-xs font-semibold tracking-[0.2em] text-slate-500 uppercase mb-8">Trusted by Industries & Engineered with Top Brands</p>
-        <div class="grid grid-cols-2 md:grid-cols-6 gap-6 items-center justify-center">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 items-center justify-center">
             
             <!-- Siemens -->
             <div class="bg-glass-card p-4 rounded-xl border border-brand-blue-light/10 text-center flex flex-col items-center justify-center group hover:border-teal-500/40 hover:shadow-[0_0_15px_rgba(20,184,166,0.15)] transition-all duration-300">
-                <span class="font-sans font-extrabold text-lg tracking-wider text-slate-500 group-hover:text-teal-400 transition-colors duration-300">SIEMENS</span>
-                <span class="text-[8px] font-mono text-slate-600 group-hover:text-teal-500/80 transition-colors duration-300 uppercase mt-0.5">Automation</span>
+                <span class="brand-card-title font-sans font-extrabold text-base md:text-lg tracking-wider group-hover:text-teal-500 transition-colors duration-300">SIEMENS</span>
+                <span class="brand-card-sub text-[9px] font-mono group-hover:text-teal-600 transition-colors duration-300 uppercase mt-0.5">Automation</span>
             </div>
             
             <!-- Omron -->
             <div class="bg-glass-card p-4 rounded-xl border border-brand-blue-light/10 text-center flex flex-col items-center justify-center group hover:border-blue-500/40 hover:shadow-[0_0_15px_rgba(59,130,246,0.15)] transition-all duration-300">
-                <span class="font-sans font-extrabold text-lg tracking-wider text-slate-500 group-hover:text-blue-400 transition-colors duration-300">OMRON</span>
-                <span class="text-[8px] font-mono text-slate-600 group-hover:text-blue-500/80 transition-colors duration-300 uppercase mt-0.5">Sensors & Control</span>
+                <span class="brand-card-title font-sans font-extrabold text-base md:text-lg tracking-wider group-hover:text-blue-500 transition-colors duration-300">OMRON</span>
+                <span class="brand-card-sub text-[9px] font-mono group-hover:text-blue-600 transition-colors duration-300 uppercase mt-0.5">Sensors & Control</span>
             </div>
             
             <!-- Delta -->
             <div class="bg-glass-card p-4 rounded-xl border border-brand-blue-light/10 text-center flex flex-col items-center justify-center group hover:border-indigo-500/40 hover:shadow-[0_0_15px_rgba(99,102,241,0.15)] transition-all duration-300">
-                <span class="font-sans font-extrabold text-lg tracking-wider text-slate-500 group-hover:text-indigo-400 transition-colors duration-300">DELTA</span>
-                <span class="text-[8px] font-mono text-slate-600 group-hover:text-indigo-500/80 transition-colors duration-300 uppercase mt-0.5">Drives & VFDs</span>
+                <span class="brand-card-title font-sans font-extrabold text-base md:text-lg tracking-wider group-hover:text-indigo-500 transition-colors duration-300">DELTA</span>
+                <span class="brand-card-sub text-[9px] font-mono group-hover:text-indigo-600 transition-colors duration-300 uppercase mt-0.5">Drives & VFDs</span>
             </div>
             
-            <!-- Weintek -->
+            <!-- Wecon -->
             <div class="bg-glass-card p-4 rounded-xl border border-brand-blue-light/10 text-center flex flex-col items-center justify-center group hover:border-cyan-500/40 hover:shadow-[0_0_15px_rgba(6,182,212,0.15)] transition-all duration-300">
-                <span class="font-sans font-extrabold text-lg tracking-wider text-slate-500 group-hover:text-cyan-400 transition-colors duration-300">WEINTEK</span>
-                <span class="text-[8px] font-mono text-slate-600 group-hover:text-cyan-500/80 transition-colors duration-300 uppercase mt-0.5">HMI Panels</span>
+                <span class="brand-card-title font-sans font-extrabold text-base md:text-lg tracking-wider group-hover:text-cyan-500 transition-colors duration-300">WECON</span>
+                <span class="brand-card-sub text-[9px] font-mono group-hover:text-cyan-600 transition-colors duration-300 uppercase mt-0.5">HMI & PLC Panels</span>
             </div>
             
-            <!-- Autonics -->
-            <div class="bg-glass-card p-4 rounded-xl border border-brand-blue-light/10 text-center flex flex-col items-center justify-center group hover:border-orange-500/40 hover:shadow-[0_0_15px_rgba(249,115,22,0.15)] transition-all duration-300">
-                <span class="font-sans font-extrabold text-lg tracking-wider text-slate-500 group-hover:text-orange-400 transition-colors duration-300">AUTONICS</span>
-                <span class="text-[8px] font-mono text-slate-600 group-hover:text-orange-500/80 transition-colors duration-300 uppercase mt-0.5">Measurement</span>
+            <!-- SG Servo -->
+            <div class="bg-glass-card p-4 rounded-xl border border-brand-blue-light/10 text-center flex flex-col items-center justify-center group hover:border-emerald-500/40 hover:shadow-[0_0_15px_rgba(16,185,129,0.15)] transition-all duration-300">
+                <span class="brand-card-title font-sans font-extrabold text-base md:text-lg tracking-wider group-hover:text-emerald-500 transition-colors duration-300">SG SERVO</span>
+                <span class="brand-card-sub text-[9px] font-mono group-hover:text-emerald-600 transition-colors duration-300 uppercase mt-0.5">Servo Motors</span>
             </div>
-            
-            <!-- Jinko Solar -->
+
+            <!-- Coolmay PLC -->
+            <div class="bg-glass-card p-4 rounded-xl border border-brand-blue-light/10 text-center flex flex-col items-center justify-center group hover:border-purple-500/40 hover:shadow-[0_0_15px_rgba(168,85,247,0.15)] transition-all duration-300">
+                <span class="brand-card-title font-sans font-extrabold text-base md:text-lg tracking-wider group-hover:text-purple-500 transition-colors duration-300">COOLMAY</span>
+                <span class="brand-card-sub text-[9px] font-mono group-hover:text-purple-600 transition-colors duration-300 uppercase mt-0.5">HMI + PLC All-In-One</span>
+            </div>
+
+            <!-- Omran -->
             <div class="bg-glass-card p-4 rounded-xl border border-brand-blue-light/10 text-center flex flex-col items-center justify-center group hover:border-amber-500/40 hover:shadow-[0_0_15px_rgba(245,158,11,0.15)] transition-all duration-300">
-                <span class="font-sans font-extrabold text-lg tracking-wider text-slate-500 group-hover:text-amber-400 transition-colors duration-300">JINKO</span>
-                <span class="text-[8px] font-mono text-slate-600 group-hover:text-amber-500/80 transition-colors duration-300 uppercase mt-0.5">N-Type Solar</span>
+                <span class="brand-card-title font-sans font-extrabold text-base md:text-lg tracking-wider group-hover:text-amber-500 transition-colors duration-300">OMRAN</span>
+                <span class="brand-card-sub text-[9px] font-mono group-hover:text-amber-600 transition-colors duration-300 uppercase mt-0.5">VFD & SERVO & HMI</span>
+            </div>
+
+            <!-- FX3U PLC -->
+            <div class="bg-glass-card p-4 rounded-xl border border-brand-blue-light/10 text-center flex flex-col items-center justify-center group hover:border-rose-500/40 hover:shadow-[0_0_15px_rgba(244,63,94,0.15)] transition-all duration-300">
+                <span class="brand-card-title font-sans font-extrabold text-base md:text-lg tracking-wider group-hover:text-rose-500 transition-colors duration-300">FX3U PLC</span>
+                <span class="brand-card-sub text-[9px] font-mono group-hover:text-rose-600 transition-colors duration-300 uppercase mt-0.5">Chinese Micro PLC</span>
             </div>
             
         </div>
@@ -144,6 +156,29 @@
     </div>
 </section>
 
+<!-- Software Downloads Banner Section -->
+<section class="py-10 bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 [html[data-theme='light']_&]:from-slate-100 [html[data-theme='light']_&]:via-white [html[data-theme='light']_&]:to-slate-100 border-b border-brand-blue-light/20 relative overflow-hidden">
+    <div class="container mx-auto px-4 relative z-10">
+        <div class="bg-glass-card rounded-3xl border border-brand-gold/30 p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
+            <div class="flex items-center gap-5">
+                <div class="w-14 h-14 rounded-2xl bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold shrink-0">
+                    <svg class="w-7 h-7 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                    </svg>
+                </div>
+                <div>
+                    <span class="text-xs font-mono font-semibold uppercase tracking-widest text-brand-gold">Engineering Tools Hub</span>
+                    <h3 class="text-xl md:text-2xl font-bold font-serif text-white [html[data-theme='light']_&]:text-slate-900 mt-0.5">Need PLC & HMI Programming Software?</h3>
+                    <p class="text-slate-400 [html[data-theme='light']_&]:text-slate-600 text-xs md:text-sm mt-1">Download official Coolmay, FX3U, and TK HMI software & drivers 100% free directly from BT Industrial.</p>
+                </div>
+            </div>
+            <a href="{{ route('downloads') }}" class="px-8 py-3.5 bg-brand-gold hover:bg-amber-600 text-slate-950 font-bold text-sm rounded-xl transition-all duration-300 shadow-lg shadow-brand-gold/20 shrink-0 transform hover:-translate-y-0.5">
+                Access Software Hub
+            </a>
+        </div>
+    </div>
+</section>
+
 <!-- Categories Section -->
 <section class="py-20 bg-slate-950">
     <div class="container mx-auto px-4">
@@ -159,18 +194,18 @@
                 <a href="{{ route('products.index', ['category' => $cat->slug]) }}" 
                    class="bg-glass-card hover-glass-card p-6 rounded-xl text-center flex flex-col items-center justify-between group">
                     
-                    <!-- Icon placeholder -->
-                    <div class="w-16 h-16 rounded-full bg-slate-900 border border-brand-blue-light/60 flex items-center justify-center text-brand-gold mb-4 group-hover:bg-brand-gold group-hover:text-slate-950 transition-all duration-300">
+                    <!-- Icon container -->
+                    <div class="w-16 h-16 rounded-full bg-brand-gold/10 border border-brand-gold/30 flex items-center justify-center text-brand-gold mb-4 group-hover:bg-brand-gold/20 group-hover:border-brand-gold group-hover:shadow-[0_0_20px_rgba(217,119,6,0.3)] transition-all duration-300">
                         @if($cat->icon == 'cpu')
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path></svg>
+                            <svg class="w-8 h-8 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path></svg>
                         @elseif($cat->icon == 'radio')
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                            <svg class="w-8 h-8 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
                         @elseif($cat->icon == 'sun')
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m12.728 12.728l.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"></path></svg>
+                            <svg class="w-8 h-8 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m12.728 12.728l.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"></path></svg>
                         @elseif($cat->icon == 'activity')
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 1121.21 7.89M9 11l3 3L22 4"></path></svg>
+                            <svg class="w-8 h-8 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 4v5h.582m15.356 2A8.001 8.001 0 1121.21 7.89M9 11l3 3L22 4"></path></svg>
                         @else
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path></svg>
+                            <svg class="w-8 h-8 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path></svg>
                         @endif
                     </div>
                     

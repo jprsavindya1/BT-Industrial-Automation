@@ -10,14 +10,16 @@ use App\Http\Controllers\Owner\ProductController as OwnerProductController;
 use App\Http\Controllers\Owner\CategoryController as OwnerCategoryController;
 use App\Http\Controllers\Owner\TestimonialController as OwnerTestimonialController;
 use App\Http\Controllers\Owner\InquiryController as OwnerInquiryController;
+use App\Http\Controllers\Owner\SoftwareDownloadController as OwnerSoftwareDownloadController;
 
 // Public Front-end Routes
 Route::get('/', [ProductController::class, 'home'])->name('home');
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 Route::get('/api/search-suggestions', [ProductController::class, 'suggestions'])->name('products.suggestions');
 Route::get('/products/{slug}', [ProductController::class, 'show'])->name('products.show');
+Route::get('/downloads', [ProductController::class, 'downloads'])->name('downloads');
 Route::get('/contact', [ProductController::class, 'contact'])->name('contact');
-Route::post('/contact', [ProductController::class, 'storeInquiry'])->name('contact.store');
+Route::post('/contact', [ProductController::class, 'storeInquiry'])->name('contact.store')->middleware('throttle:5,1');
 
 // Review Submission
 Route::post('/testimonials', [TestimonialController::class, 'store'])->name('testimonials.store');
@@ -41,6 +43,10 @@ Route::middleware('auth')->group(function () {
 
         // Categories Management
         Route::resource('categories', OwnerCategoryController::class)->except(['show', 'create']);
+
+        // Software Downloads Management
+        Route::post('downloads/{id}/toggle-active', [OwnerSoftwareDownloadController::class, 'toggleActive'])->name('downloads.toggle-active');
+        Route::resource('downloads', OwnerSoftwareDownloadController::class)->except(['show']);
 
         // Testimonials Management
         Route::get('testimonials', [OwnerTestimonialController::class, 'index'])->name('testimonials.index');

@@ -8,13 +8,14 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\Testimonial;
 use App\Models\Inquiry;
+use App\Models\SoftwareDownload;
 
 class ProductController extends Controller
 {
     public function home()
     {
-        $categories = Category::withCount('products')->get();
-        $featuredProducts = Product::where('is_featured', true)->with('category')->take(4)->get();
+        $categories = Category::withCount('products')->take(8)->get();
+        $featuredProducts = Product::where('is_featured', true)->with(['category', 'galleryImages'])->take(4)->get();
         $testimonials = Testimonial::where('is_approved', true)->latest()->get();
         return view('home', compact('categories', 'featuredProducts', 'testimonials'));
     }
@@ -22,7 +23,7 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $categories = Category::all();
-        $query = Product::query()->with('category');
+        $query = Product::query()->with(['category', 'galleryImages']);
 
         if ($request->filled('search')) {
             $search = $request->input('search');
@@ -47,39 +48,43 @@ class ProductController extends Controller
             $query->where('price', '<=', $request->input('max_price'));
         }
 
-        if ($request->has('featured') && $request->input('featured') === '1') {
-            $query->where('is_featured', true);
+        if ($request->filled('sort')) {
+            switch ($request->input('sort')) {
+                case 'price_low':
+                    $query->orderBy('price', 'asc');
+                    break;
+                case 'price_high':
+                    $query->orderBy('price', 'desc');
+                    break;
+                case 'latest':
+                default:
+                    $query->latest();
+                    break;
+            }
+        } else {
+            $query->latest();
         }
 
-        $products = $query->paginate(9)->withQueryString();
+        $products = $query->paginate(12)->withQueryString();
 
         return view('catalog', compact('products', 'categories'));
     }
 
     public function suggestions(Request $request)
     {
-        $query = $request->input('query');
-        if (empty($query) || strlen($query) < 2) {
+        $search = trim($request->input('q', ''));
+        
+        if (strlen($search) < 2) {
             return response()->json([]);
         }
 
-        $products = Product::where('name', 'like', "%{$query}%")
-            ->orWhere('description', 'like', "%{$query}%")
-            ->with('category')
+        $products = Product::where('name', 'like', "%{$search}%")
+            ->orWhere('description', 'like', "%{$search}%")
+            ->select('id', 'name', 'slug', 'price', 'image')
             ->take(6)
             ->get();
 
-        $suggestions = $products->map(function($product) {
-            return [
-                'name' => $product->name,
-                'price' => number_format($product->price, 2),
-                'image' => $product->image ? asset('storage/' . $product->image) : null,
-                'url' => route('products.show', $product->slug),
-                'category' => $product->category->name
-            ];
-        });
-
-        return response()->json($suggestions);
+        return response()->json($products);
     }
 
     public function show($slug)
@@ -109,6 +114,16 @@ class ProductController extends Controller
     public function contact()
     {
         return view('contact');
+    }
+
+    public function downloads()
+    {
+        $downloads = SoftwareDownload::where('is_active', true)
+            ->orderBy('sort_order')
+            ->orderBy('id', 'asc')
+            ->get();
+
+        return view('downloads', compact('downloads'));
     }
 
     public function storeInquiry(Request $request)
