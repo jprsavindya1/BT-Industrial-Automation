@@ -22,7 +22,7 @@ Route::get('/contact', [ProductController::class, 'contact'])->name('contact');
 Route::post('/contact', [ProductController::class, 'storeInquiry'])->name('contact.store')->middleware('throttle:5,1');
 
 // Review Submission
-Route::post('/testimonials', [TestimonialController::class, 'store'])->name('testimonials.store');
+Route::post('/testimonials', [TestimonialController::class, 'store'])->name('testimonials.store')->middleware('throttle:3,1');
 
 // Guest Auth Routes
 Route::middleware('guest')->group(function () {

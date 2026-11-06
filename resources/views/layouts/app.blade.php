@@ -4,6 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'BT Industrial Automation | Sri Lanka')</title>
+    
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="@yield('meta_title', 'BT Industrial Automation | Sri Lanka')">
+    <meta name="description" content="@yield('meta_description', 'Your trusted partner in industrial automation. Supplying PLCs, Sensors, Inverters, and Solar Solutions across Sri Lanka.')">
+    <meta name="keywords" content="Industrial Automation, PLC, Siemens, Omron, Sensors, VFD, Inverters, Solar Panels, Sri Lanka">
+
+    <!-- Open Graph / Facebook / WhatsApp -->
+    <meta property="og:type" content="@yield('og_type', 'website')">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="@yield('meta_title', 'BT Industrial Automation | Sri Lanka')">
+    <meta property="og:description" content="@yield('meta_description', 'Your trusted partner in industrial automation. Supplying PLCs, Sensors, Inverters, and Solar Solutions across Sri Lanka.')">
+    <meta property="og:image" content="@yield('og_image', asset('logo-monogram.png'))">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{{ url()->current() }}">
+    <meta property="twitter:title" content="@yield('meta_title', 'BT Industrial Automation | Sri Lanka')">
+    <meta property="twitter:description" content="@yield('meta_description', 'Your trusted partner in industrial automation. Supplying PLCs, Sensors, Inverters, and Solar Solutions across Sri Lanka.')">
+    <meta property="twitter:image" content="@yield('og_image', asset('logo-monogram.png'))">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ asset('logo-monogram.png') }}">
+    <link rel="apple-touch-icon" href="{{ asset('logo-monogram.png') }}">
+
     <!-- Google Fonts: Inter and Playfair Display -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

@@ -48,6 +48,10 @@ class ProductController extends Controller
             $query->where('price', '<=', $request->input('max_price'));
         }
 
+        if ($request->filled('featured')) {
+            $query->where('is_featured', $request->input('featured') == '1');
+        }
+
         if ($request->filled('sort')) {
             switch ($request->input('sort')) {
                 case 'price_low':
@@ -72,17 +76,28 @@ class ProductController extends Controller
 
     public function suggestions(Request $request)
     {
-        $search = trim($request->input('q', ''));
+        $search = trim($request->input('query', ''));
         
         if (strlen($search) < 2) {
             return response()->json([]);
         }
 
-        $products = Product::where('name', 'like', "%{$search}%")
+        $products = Product::with('category')
+            ->where('name', 'like', "%{$search}%")
             ->orWhere('description', 'like', "%{$search}%")
-            ->select('id', 'name', 'slug', 'price', 'image')
             ->take(6)
-            ->get();
+            ->get()
+            ->map(function($product) {
+                return [
+                    'id' => $product->id,
+                    'name' => $product->name,
+                    'slug' => $product->slug,
+                    'price' => number_format($product->price, 2),
+                    'image' => $product->image ? asset('storage/' . $product->image) : null,
+                    'category' => $product->category ? $product->category->name : 'Uncategorized',
+                    'url' => route('products.show', $product->slug)
+                ];
+            });
 
         return response()->json($products);
     }

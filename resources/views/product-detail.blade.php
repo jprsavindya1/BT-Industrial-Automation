@@ -1,6 +1,10 @@
 @extends('layouts.app')
 
 @section('title', $product->name . ' | BT Industrial Automation')
+@section('meta_title', $product->name . ' | BT Industrial Automation')
+@section('meta_description', Str::limit(strip_tags($product->description), 150))
+@section('og_image', $product->image ? asset('storage/' . $product->image) : asset('logo-monogram.png'))
+@section('og_type', 'product')
 
 @section('content')
 <div class="py-12 bg-slate-950">

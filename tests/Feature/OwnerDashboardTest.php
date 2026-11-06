@@ -185,7 +185,7 @@ class OwnerDashboardTest extends TestCase
         ]);
 
         \Illuminate\Support\Facades\Storage::fake('public');
-        $file = \Illuminate\Http\UploadedFile::fake()->create('gallery1.jpg', 100, 'image/jpeg');
+        $file = \Illuminate\Http\UploadedFile::fake()->image('gallery1.jpg');
 
         $response = $this->actingAs($this->owner)->put(route('owner.products.update', $product->id), [
             'category_id' => $category->id,
